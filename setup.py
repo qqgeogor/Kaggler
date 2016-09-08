@@ -72,6 +72,12 @@ setup(
                            ['kaggler/online_model/ftrl_fm.pyx'],
                            libraries=[],
                            include_dirs=[np.get_include(), '.'],
-                           extra_compile_args=['-O3']),
+                           extra_compile_args=[
+                                    '-O3',
+                                    # '-fopenmp',
+                                    ],
+                           # extra_link_args=['-fopenmp'],
+                           ),
+                          
                  ],
 )

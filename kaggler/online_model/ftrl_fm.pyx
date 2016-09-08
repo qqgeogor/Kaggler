@@ -8,7 +8,7 @@ import numpy as np
 import copy
 cimport numpy as np
 np.import_array()
-
+from cython.parallel import parallel
 from datetime import datetime
 import random
 
@@ -78,9 +78,9 @@ cdef class FTRL_FM:
         # w: lazy weights
         
         # let index 0 be bias term to avoid collisions.
-        self.n = np.zeros((self.D + 1,), dtype=np.float64)
-        self.z = np.zeros((self.D + 1,), dtype=np.float64)
-        self.w = np.zeros((self.D + 1,), dtype=np.float64)
+        self.n = np.zeros(self.D + 1, dtype=np.float64)
+        self.z = np.zeros(self.D + 1, dtype=np.float64)
+        self.w = np.zeros(self.D + 1, dtype=np.float64)
         
         self.n_fm = {}
         self.z_fm = {}
@@ -92,9 +92,9 @@ cdef class FTRL_FM:
         '''
         cdef unsigned int k
         if i not in self.n_fm:
-            self.n_fm[i] = [0.] * self.fm_dim
-            self.w_fm[i] = [0.] * self.fm_dim
-            self.z_fm[i] = [0.] * self.fm_dim
+            self.n_fm[i] = np.zeros(self.fm_dim, dtype=np.float64)
+            self.w_fm[i] = np.zeros(self.fm_dim, dtype=np.float64)
+            self.z_fm[i] = np.zeros(self.fm_dim, dtype=np.float64)
             
             for k in range(self.fm_dim): 
                 self.z_fm[i][k] = random.gauss(0., self.fm_initDev)
@@ -214,10 +214,15 @@ cdef class FTRL_FM:
         cdef int i
         cdef int j
         cdef int k
+        cdef double sigma
+        cdef dict fm_sum
+        # cdef np.ndarray fm_sum
 
         fm_sum = {}      # sums for calculating gradients for FM.
+        # fm_sum = np.zeros(len(x + [0]))
+        # fm_sum = np.expand_dims(fm_sum,1)
         len_x = len(x)
-        
+        # with nogil, parallel():
         for i in x + [0]:
             # update the first order weights.
             sigma = (sqrt(self.n[i] + g * g) - sqrt(self.n[i])) / self.alpha
@@ -225,7 +230,7 @@ cdef class FTRL_FM:
             self.n[i] += g * g
             
             # initialize the sum of the FM interaction weights.
-            fm_sum[i] = [0.] * self.fm_dim
+            fm_sum[i] = np.zeros(self.fm_dim)
         
         # sum the gradients for FM interaction weights.
         for i in range(len_x):
@@ -299,8 +304,6 @@ cdef class FTRL_FM:
             y_test.append(y)
         score = eval_metric(y_preds,y_preds)
         return score
-
-
 
     def fit(self,trainingFile,hashSalt='salt',n_epochs=5,reportFrequency=10000,validationFile=None,eval_metric=None):
         start = datetime.now()
