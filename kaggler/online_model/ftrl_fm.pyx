@@ -373,7 +373,7 @@ def data(filePath, hashSize, hashSalt,loop=False):
     cdef unsigned int index
     cdef dict row
     import os
-    if loop:
+    if not loop:
         for t, row in enumerate(DictReader(filePath)):
             ID = row['activity_id']
             del row['activity_id']
