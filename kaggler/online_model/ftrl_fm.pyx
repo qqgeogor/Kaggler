@@ -271,7 +271,7 @@ cdef class FTRL_FM:
         cdef double p
         cdef double loss
         cdef list y_preds = []
-        for t, ID, x, y in data(testingFile, self.D, hashSalt):
+        for t, ID, x, y in data(testingFile, self.D, hashSalt,loop=False):
             p = learner.predict_one(x)
             y_preds.append(p)
         return y_preds
@@ -293,7 +293,7 @@ cdef class FTRL_FM:
         cdef double loss
         cdef list y_preds = []
         cdef list y_test = []
-        for t, ID, x, y in data(validationFile, self.D, hashSalt):
+        for t, ID, x, y in data(validationFile, self.D, hashSalt,loop=False):
             p = learner.predict_one(x)
             y_preds.append(p)
             y_test.append(y)
@@ -328,7 +328,7 @@ cdef class FTRL_FM:
                 learner.L2_fm = learner.L1_fm_tmp
             
 
-            for t, ID, x, y in data(trainingFile, self.D, hashSalt):
+            for t, ID, x, y in data(trainingFile, self.D, hashSalt,loop=True):
                 p = learner.predict_one(x)
                 loss = logLoss(p, y)
                 learner.update(x, p, y)
@@ -355,7 +355,7 @@ def logLoss(double p, double y):
     p = max(min(p, 1. - 1e-15), 1e-15)
     return - log(p) if y == 1. else -log(1. - p)
 
-def data(filePath, hashSize, hashSalt):
+def data(filePath, hashSize, hashSalt,loop=False):
     ''' generator for data using hash trick
     
     INPUT:
@@ -370,28 +370,56 @@ def data(filePath, hashSize, hashSalt):
     cdef unsigned int index
     cdef dict row
     import os
-    for t, row in enumerate(DictReader(filePath)):
-        ID = row['activity_id']
-        del row['activity_id']
-        
-        del row['outcome_isnull']
-
-        y = 0.
-        if 'outcome' in row:
-            if row['outcome'] == '1':
-                y = 1.
-            del row['outcome']
-        
-        # date = int(row['hour'][4:6])
-        
-        # row['hour'] = row['hour'][6:]
-        
-        x = []
-        
-        for key in row:
-            value = row[key]
+    if loop:
+        for t, row in enumerate(DictReader(filePath)):
+            ID = row['activity_id']
+            del row['activity_id']
             
-            index = abs(hash(hashSalt + key + '_' + value)) % hashSize + 1      # 1 is added to hash index because I want 0 to indicate the bias term.
-            x.append(index)
-        
-        yield t, ID, x, y
+            del row['outcome_isnull']
+
+            y = 0.
+            if 'outcome' in row:
+                if row['outcome'] == '1':
+                    y = 1.
+                del row['outcome']
+            
+            # date = int(row['hour'][4:6])
+            
+            # row['hour'] = row['hour'][6:]
+            
+            x = []
+            
+            for key in row:
+                value = row[key]
+                
+                index = abs(hash(hashSalt + key + '_' + value)) % hashSize + 1      # 1 is added to hash index because I want 0 to indicate the bias term.
+                x.append(index)
+            
+            yield t, ID, x, y
+    else:
+        while True:
+            for t, row in enumerate(DictReader(filePath)):
+                ID = row['activity_id']
+                del row['activity_id']
+                
+                del row['outcome_isnull']
+
+                y = 0.
+                if 'outcome' in row:
+                    if row['outcome'] == '1':
+                        y = 1.
+                    del row['outcome']
+                
+                # date = int(row['hour'][4:6])
+                
+                # row['hour'] = row['hour'][6:]
+                
+                x = []
+                
+                for key in row:
+                    value = row[key]
+                    
+                    index = abs(hash(hashSalt + key + '_' + value)) % hashSize + 1      # 1 is added to hash index because I want 0 to indicate the bias term.
+                    x.append(index)
+                
+                yield t, ID, x, y
