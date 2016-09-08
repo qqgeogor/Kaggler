@@ -9,6 +9,7 @@ from libc.math cimport sqrt, abs
 from ..util cimport sigm
 cimport numpy as np
 
+from cython.parallel import prange, parallel, threadid  
 
 np.import_array()
 
@@ -108,11 +109,12 @@ cdef class FM:
         Returns:
             updated model weights and counts
         """
+        n = X.shape[0]
         for epoch in range(self.epoch):
-            for row in range(X.shape[0]):
+            for row in range(n):
                 x = zip(X[row].indices, X[row].data)
                 self.update_one(x, self.predict_one(x) - y[row])
-
+                
     def predict(self, X):
         """Predict for a sparse matrix X.
 

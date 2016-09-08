@@ -67,5 +67,11 @@ setup(
                            ['kaggler/util.pyx', 'kaggler/util.pxd'],
                            libraries=[],
                            include_dirs=[np.get_include(), '.'],
-                           extra_compile_args=['-O3'])],
+                           extra_compile_args=['-O3']),
+                 Extension('kaggler.online_model.ftrl_fm',
+                           ['kaggler/online_model/ftrl_fm.pyx'],
+                           libraries=[],
+                           include_dirs=[np.get_include(), '.'],
+                           extra_compile_args=['-O3']),
+                 ],
 )
