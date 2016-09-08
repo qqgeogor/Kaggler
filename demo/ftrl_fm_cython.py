@@ -20,19 +20,19 @@ reportFrequency = 1000
 path = "E:\\Redhat\\"
 trainingFile = "E:\\Redhat\\train_le_date.csv"
 testingFile = "E:\\Redhat\\test_le_date.csv"
-train = pd.read_csv(trainingFile)
-test = pd.read_csv(testingFile)
-y = train['outcome'].values
-skf = KFold(len(y), n_folds=4, shuffle=False, random_state=seed)
-for ind_tr, ind_te in skf:
-    X_train = train.iloc[ind_tr]
-    X_test = train.iloc[ind_te]
-    break
+# train = pd.read_csv(trainingFile)
+# test = pd.read_csv(testingFile)
+# y = train['outcome'].values
+# skf = KFold(len(y), n_folds=4, shuffle=False, random_state=seed)
+# for ind_tr, ind_te in skf:
+#     X_train = train.iloc[ind_tr]
+#     X_test = train.iloc[ind_te]
+#     break
 
-X_train.to_csv(path+'X_train.csv',index=False)
-X_test.to_csv(path+'X_test.csv',index=False)
+# X_train.to_csv(path+'X_train.csv',index=False)
+# X_test.to_csv(path+'X_test.csv',index=False)
 
-fm_dim = 32
+fm_dim = 4
 fm_initDev = .01
 
 alpha = 0.1
