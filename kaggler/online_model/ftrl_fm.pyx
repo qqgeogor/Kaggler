@@ -5,7 +5,7 @@ from csv import DictReader
 cimport cython
 from libc.math cimport exp, copysign, log, sqrt
 import numpy as np
-
+import copy
 cimport numpy as np
 np.import_array()
 
@@ -256,7 +256,7 @@ cdef class FTRL_FM:
                 f_out.write("%i,%s\n" % (k, ",".join([str(w) for w in w_fm])))
 
 
-    def predict(self,testingFile,hashSalt='salt', n_epochs=5,reportFrequency=10000):
+    def predict(self,testingFile,hashSalt='salt'):
         start = datetime.now()
         # initialize a FM learner
         learner = self
@@ -275,9 +275,34 @@ cdef class FTRL_FM:
             p = learner.predict_one(x)
             y_preds.append(p)
         return y_preds
-        
-        
-    def fit(self,trainingFile,hashSalt='salt',n_epochs=5,reportFrequency=10000):
+
+
+    def evaluate(self,validationFile,eval_metric,hashSalt='salt'):
+        start = datetime.now()
+        # initialize a FM learner
+        learner = self
+        cdef int e
+        cdef double cvLoss = 0.
+        cdef double cvCount = 0.
+        cdef double progressiveLoss = 0.
+        cdef double progressiveCount = 0.
+        cdef list x
+        cdef double y
+        cdef unsigned int t
+        cdef double p
+        cdef double loss
+        cdef list y_preds = []
+        cdef list y_test = []
+        for t, ID, x, y in data(validationFile, self.D, hashSalt):
+            p = learner.predict_one(x)
+            y_preds.append(p)
+            y_test.append(y)
+        score = eval_metric(y_preds,y_preds)
+        return score
+
+
+
+    def fit(self,trainingFile,hashSalt='salt',n_epochs=5,reportFrequency=10000,validationFile=None,eval_metric=None):
         start = datetime.now()
         # initialize a FM learner
         learner = self
@@ -311,10 +336,16 @@ cdef class FTRL_FM:
                 progressiveCount += 1.
                 if t % reportFrequency == 0:                
                     print("Epoch %d\tcount: %d\tProgressive Loss: %f" % (e, t, progressiveLoss / progressiveCount))
-                
+                    if validationFile!=None and eval_metric!=None:
+                        eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
+                        print("Epoch %d\tcount: %d\tEvaludation score: %f" % (e, t, eval_score))
+
             print("Epoch %d finished.\tvalidation loss: %f\telapsed time: %s" % (e, cvLoss / cvCount, str(datetime.now() - start)))
-            
-            
+            if validationFile!=None and eval_metric!=None:
+                eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
+                print("Epoch %d\finished: %d\tEvaludation score: %f" % (e, t, eval_score))
+
+
 def logLoss(double p, double y):
     ''' 
     calculate the log loss cost

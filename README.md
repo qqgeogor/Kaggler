@@ -9,6 +9,7 @@ Currently algorithms available are as follows:
 ## Online learning algorithms
 * Stochastic Gradient Descent (SGD)
 * Follow-the-Regularized-Leader (FTRL)
+* Follow-the-Regularized-Leader with Factorization Machine (FTRL_FM)
 * Factorization Machine (FM)
 * Neural Networks (NN) - with a single (NN) or two (NN_H2) ReLU hidden layers
 * Decision Tree

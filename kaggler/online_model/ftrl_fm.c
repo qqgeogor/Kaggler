@@ -839,7 +839,7 @@ struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM {
 };
 
 
-/* "kaggler\online_model\ftrl_fm.pyx":327
+/* "kaggler\online_model\ftrl_fm.pyx":358
  *     return - log(p) if y == 1. else -log(1. - p)
  * 
  * def data(filePath, hashSize, hashSalt):             # <<<<<<<<<<<<<<
@@ -1715,8 +1715,9 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_12predictWit
 static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_14update(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_x, double __pyx_v_p, double __pyx_v_y); /* proto */
 static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_16write_w(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_filePath); /* proto */
 static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_18write_w_fm(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_filePath); /* proto */
-static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_20predict(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_testingFile, PyObject *__pyx_v_hashSalt, CYTHON_UNUSED PyObject *__pyx_v_n_epochs, CYTHON_UNUSED PyObject *__pyx_v_reportFrequency); /* proto */
-static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_trainingFile, PyObject *__pyx_v_hashSalt, PyObject *__pyx_v_n_epochs, PyObject *__pyx_v_reportFrequency); /* proto */
+static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_20predict(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_testingFile, PyObject *__pyx_v_hashSalt); /* proto */
+static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22evaluate(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_validationFile, PyObject *__pyx_v_eval_metric, PyObject *__pyx_v_hashSalt); /* proto */
+static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_24fit(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_trainingFile, PyObject *__pyx_v_hashSalt, PyObject *__pyx_v_n_epochs, PyObject *__pyx_v_reportFrequency, PyObject *__pyx_v_validationFile, PyObject *__pyx_v_eval_metric); /* proto */
 static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_logLoss(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_p, double __pyx_v_y); /* proto */
 static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_2data(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_filePath, PyObject *__pyx_v_hashSize, PyObject *__pyx_v_hashSalt); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
@@ -1803,6 +1804,7 @@ static char __pyx_k_row[] = "row";
 static char __pyx_k_args[] = "args";
 static char __pyx_k_base[] = "base";
 static char __pyx_k_beta[] = "beta";
+static char __pyx_k_copy[] = "copy";
 static char __pyx_k_data[] = "data";
 static char __pyx_k_exit[] = "__exit__";
 static char __pyx_k_file[] = "file";
@@ -1858,6 +1860,7 @@ static char __pyx_k_outcome[] = "outcome";
 static char __pyx_k_Ellipsis[] = "Ellipsis";
 static char __pyx_k_alpha_fm[] = "alpha_fm";
 static char __pyx_k_datetime[] = "datetime";
+static char __pyx_k_evaluate[] = "evaluate";
 static char __pyx_k_filePath[] = "filePath";
 static char __pyx_k_hashSalt[] = "hashSalt";
 static char __pyx_k_hashSize[] = "hashSize";
@@ -1874,6 +1877,7 @@ static char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static char __pyx_k_MemoryError[] = "MemoryError";
 static char __pyx_k_activity_id[] = "activity_id";
 static char __pyx_k_dropoutRate[] = "dropoutRate";
+static char __pyx_k_eval_metric[] = "eval_metric";
 static char __pyx_k_predict_one[] = "predict_one";
 static char __pyx_k_predict_raw[] = "predict_raw";
 static char __pyx_k_testingFile[] = "testingFile";
@@ -1882,6 +1886,7 @@ static char __pyx_k_trainingFile[] = "trainingFile";
 static char __pyx_k_pyx_getbuffer[] = "__pyx_getbuffer";
 static char __pyx_k_Start_Training[] = "Start Training:";
 static char __pyx_k_outcome_isnull[] = "outcome_isnull";
+static char __pyx_k_validationFile[] = "validationFile";
 static char __pyx_k_allocate_buffer[] = "allocate_buffer";
 static char __pyx_k_dtype_is_object[] = "dtype_is_object";
 static char __pyx_k_reportFrequency[] = "reportFrequency";
@@ -1910,8 +1915,10 @@ static char __pyx_k_Can_only_create_a_buffer_that_is[] = "Can only create a buff
 static char __pyx_k_Cannot_transpose_memoryview_with[] = "Cannot transpose memoryview with indirect dimensions";
 static char __pyx_k_E_repo_Kaggler_kaggler_online_mo[] = "E:\\repo\\Kaggler\\kaggler\\online_model\\ftrl_fm.pyx";
 static char __pyx_k_Empty_shape_tuple_for_cython_arr[] = "Empty shape tuple for cython.array";
+static char __pyx_k_Epoch_d_count_d_Evaludation_scor[] = "Epoch %d\tcount: %d\tEvaludation score: %f";
 static char __pyx_k_Epoch_d_count_d_Progressive_Loss[] = "Epoch %d\tcount: %d\tProgressive Loss: %f";
 static char __pyx_k_Epoch_d_finished_validation_loss[] = "Epoch %d finished.\tvalidation loss: %f\telapsed time: %s";
+static char __pyx_k_Epoch_d_inished_d_Evaludation_sc[] = "Epoch %d\014inished: %d\tEvaludation score: %f";
 static char __pyx_k_Format_string_allocated_too_shor[] = "Format string allocated too short, see comment in numpy.pxd";
 static char __pyx_k_Indirect_dimensions_not_supporte[] = "Indirect dimensions not supported";
 static char __pyx_k_Invalid_mode_expected_c_or_fortr[] = "Invalid mode, expected 'c' or 'fortran', got %s";
@@ -1931,8 +1938,10 @@ static PyObject *__pyx_n_s_DictReader;
 static PyObject *__pyx_kp_s_E_repo_Kaggler_kaggler_online_mo;
 static PyObject *__pyx_n_s_Ellipsis;
 static PyObject *__pyx_kp_s_Empty_shape_tuple_for_cython_arr;
+static PyObject *__pyx_kp_s_Epoch_d_count_d_Evaludation_scor;
 static PyObject *__pyx_kp_s_Epoch_d_count_d_Progressive_Loss;
 static PyObject *__pyx_kp_s_Epoch_d_finished_validation_loss;
+static PyObject *__pyx_kp_s_Epoch_d_inished_d_Evaludation_sc;
 static PyObject *__pyx_kp_u_Format_string_allocated_too_shor;
 static PyObject *__pyx_kp_u_Format_string_allocated_too_shor_2;
 static PyObject *__pyx_n_s_ID;
@@ -1971,6 +1980,7 @@ static PyObject *__pyx_n_s_class;
 static PyObject *__pyx_n_s_close;
 static PyObject *__pyx_kp_s_contiguous_and_direct;
 static PyObject *__pyx_kp_s_contiguous_and_indirect;
+static PyObject *__pyx_n_s_copy;
 static PyObject *__pyx_n_s_csv;
 static PyObject *__pyx_n_s_data;
 static PyObject *__pyx_n_s_datetime;
@@ -1982,6 +1992,8 @@ static PyObject *__pyx_n_s_end;
 static PyObject *__pyx_n_s_enter;
 static PyObject *__pyx_n_s_enumerate;
 static PyObject *__pyx_n_s_error;
+static PyObject *__pyx_n_s_eval_metric;
+static PyObject *__pyx_n_s_evaluate;
 static PyObject *__pyx_n_s_exit;
 static PyObject *__pyx_n_s_file;
 static PyObject *__pyx_n_s_filePath;
@@ -2058,6 +2070,7 @@ static PyObject *__pyx_kp_s_unable_to_allocate_shape_and_str;
 static PyObject *__pyx_kp_u_unknown_dtype_code_in_numpy_pxd;
 static PyObject *__pyx_n_s_unpack;
 static PyObject *__pyx_n_s_update;
+static PyObject *__pyx_n_s_validationFile;
 static PyObject *__pyx_n_s_value;
 static PyObject *__pyx_n_s_w;
 static PyObject *__pyx_n_s_write;
@@ -5765,7 +5778,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_18write_w_fm
 /* "kaggler\online_model\ftrl_fm.pyx":259
  * 
  * 
- *     def predict(self,testingFile,hashSalt='salt', n_epochs=5,reportFrequency=10000):             # <<<<<<<<<<<<<<
+ *     def predict(self,testingFile,hashSalt='salt'):             # <<<<<<<<<<<<<<
  *         start = datetime.now()
  *         # initialize a FM learner
  */
@@ -5775,8 +5788,6 @@ static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_21predict(Py
 static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_21predict(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_testingFile = 0;
   PyObject *__pyx_v_hashSalt = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_n_epochs = 0;
-  CYTHON_UNUSED PyObject *__pyx_v_reportFrequency = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5784,17 +5795,13 @@ static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_21predict(Py
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("predict (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_testingFile,&__pyx_n_s_hashSalt,&__pyx_n_s_n_epochs,&__pyx_n_s_reportFrequency,0};
-    PyObject* values[4] = {0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_testingFile,&__pyx_n_s_hashSalt,0};
+    PyObject* values[2] = {0,0};
     values[1] = ((PyObject *)__pyx_n_s_salt);
-    values[2] = ((PyObject *)__pyx_int_5);
-    values[3] = ((PyObject *)__pyx_int_10000);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
         case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
         case  0: break;
@@ -5810,24 +5817,12 @@ static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_21predict(Py
           PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_hashSalt);
           if (value) { values[1] = value; kw_args--; }
         }
-        case  2:
-        if (kw_args > 0) {
-          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_epochs);
-          if (value) { values[2] = value; kw_args--; }
-        }
-        case  3:
-        if (kw_args > 0) {
-          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reportFrequency);
-          if (value) { values[3] = value; kw_args--; }
-        }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "predict") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
-        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
         case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
         break;
@@ -5836,25 +5831,23 @@ static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_21predict(Py
     }
     __pyx_v_testingFile = values[0];
     __pyx_v_hashSalt = values[1];
-    __pyx_v_n_epochs = values[2];
-    __pyx_v_reportFrequency = values[3];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("predict", 0, 1, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("predict", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("kaggler.online_model.ftrl_fm.FTRL_FM.predict", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_20predict(((struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *)__pyx_v_self), __pyx_v_testingFile, __pyx_v_hashSalt, __pyx_v_n_epochs, __pyx_v_reportFrequency);
+  __pyx_r = __pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_20predict(((struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *)__pyx_v_self), __pyx_v_testingFile, __pyx_v_hashSalt);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_20predict(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_testingFile, PyObject *__pyx_v_hashSalt, CYTHON_UNUSED PyObject *__pyx_v_n_epochs, CYTHON_UNUSED PyObject *__pyx_v_reportFrequency) {
+static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_20predict(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_testingFile, PyObject *__pyx_v_hashSalt) {
   CYTHON_UNUSED PyObject *__pyx_v_start = NULL;
   struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_learner = NULL;
   CYTHON_UNUSED double __pyx_v_cvLoss;
@@ -5889,7 +5882,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_20predict(st
 
   /* "kaggler\online_model\ftrl_fm.pyx":260
  * 
- *     def predict(self,testingFile,hashSalt='salt', n_epochs=5,reportFrequency=10000):
+ *     def predict(self,testingFile,hashSalt='salt'):
  *         start = datetime.now()             # <<<<<<<<<<<<<<
  *         # initialize a FM learner
  *         learner = self
@@ -6207,7 +6200,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_20predict(st
   /* "kaggler\online_model\ftrl_fm.pyx":259
  * 
  * 
- *     def predict(self,testingFile,hashSalt='salt', n_epochs=5,reportFrequency=10000):             # <<<<<<<<<<<<<<
+ *     def predict(self,testingFile,hashSalt='salt'):             # <<<<<<<<<<<<<<
  *         start = datetime.now()
  *         # initialize a FM learner
  */
@@ -6237,35 +6230,31 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_20predict(st
 /* "kaggler\online_model\ftrl_fm.pyx":280
  * 
  * 
- *     def fit(self,trainingFile,hashSalt='salt',n_epochs=5,reportFrequency=10000):             # <<<<<<<<<<<<<<
+ *     def evaluate(self,validationFile,eval_metric,hashSalt='salt'):             # <<<<<<<<<<<<<<
  *         start = datetime.now()
  *         # initialize a FM learner
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_23fit(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_23fit(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_trainingFile = 0;
+static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_23evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_23evaluate(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_validationFile = 0;
+  PyObject *__pyx_v_eval_metric = 0;
   PyObject *__pyx_v_hashSalt = 0;
-  PyObject *__pyx_v_n_epochs = 0;
-  PyObject *__pyx_v_reportFrequency = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("fit (wrapper)", 0);
+  __Pyx_RefNannySetupContext("evaluate (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_trainingFile,&__pyx_n_s_hashSalt,&__pyx_n_s_n_epochs,&__pyx_n_s_reportFrequency,0};
-    PyObject* values[4] = {0,0,0,0};
-    values[1] = ((PyObject *)__pyx_n_s_salt);
-    values[2] = ((PyObject *)__pyx_int_5);
-    values[3] = ((PyObject *)__pyx_int_10000);
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_validationFile,&__pyx_n_s_eval_metric,&__pyx_n_s_hashSalt,0};
+    PyObject* values[3] = {0,0,0};
+    values[2] = ((PyObject *)__pyx_n_s_salt);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
         case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -6275,97 +6264,88 @@ static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_23fit(PyObje
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_trainingFile)) != 0)) kw_args--;
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_validationFile)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         case  1:
-        if (kw_args > 0) {
-          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_hashSalt);
-          if (value) { values[1] = value; kw_args--; }
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_eval_metric)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("evaluate", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
-          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_epochs);
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_hashSalt);
           if (value) { values[2] = value; kw_args--; }
-        }
-        case  3:
-        if (kw_args > 0) {
-          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reportFrequency);
-          if (value) { values[3] = value; kw_args--; }
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fit") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
-        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
         break;
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_trainingFile = values[0];
-    __pyx_v_hashSalt = values[1];
-    __pyx_v_n_epochs = values[2];
-    __pyx_v_reportFrequency = values[3];
+    __pyx_v_validationFile = values[0];
+    __pyx_v_eval_metric = values[1];
+    __pyx_v_hashSalt = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("fit", 0, 1, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("evaluate", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
-  __Pyx_AddTraceback("kaggler.online_model.ftrl_fm.FTRL_FM.fit", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("kaggler.online_model.ftrl_fm.FTRL_FM.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(((struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *)__pyx_v_self), __pyx_v_trainingFile, __pyx_v_hashSalt, __pyx_v_n_epochs, __pyx_v_reportFrequency);
+  __pyx_r = __pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22evaluate(((struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *)__pyx_v_self), __pyx_v_validationFile, __pyx_v_eval_metric, __pyx_v_hashSalt);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_trainingFile, PyObject *__pyx_v_hashSalt, PyObject *__pyx_v_n_epochs, PyObject *__pyx_v_reportFrequency) {
-  PyObject *__pyx_v_start = NULL;
+static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22evaluate(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_validationFile, PyObject *__pyx_v_eval_metric, PyObject *__pyx_v_hashSalt) {
+  CYTHON_UNUSED PyObject *__pyx_v_start = NULL;
   struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_learner = NULL;
-  int __pyx_v_e;
-  double __pyx_v_cvLoss;
-  double __pyx_v_cvCount;
-  double __pyx_v_progressiveLoss;
-  double __pyx_v_progressiveCount;
+  CYTHON_UNUSED double __pyx_v_cvLoss;
+  CYTHON_UNUSED double __pyx_v_cvCount;
+  CYTHON_UNUSED double __pyx_v_progressiveLoss;
+  CYTHON_UNUSED double __pyx_v_progressiveCount;
   PyObject *__pyx_v_x = 0;
   double __pyx_v_y;
-  unsigned int __pyx_v_t;
+  CYTHON_UNUSED unsigned int __pyx_v_t;
   double __pyx_v_p;
-  double __pyx_v_loss;
+  PyObject *__pyx_v_y_preds = 0;
+  PyObject *__pyx_v_y_test = 0;
   CYTHON_UNUSED PyObject *__pyx_v_ID = NULL;
+  PyObject *__pyx_v_score = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
-  long __pyx_t_4;
-  int __pyx_t_5;
-  int __pyx_t_6;
-  double __pyx_t_7;
+  PyObject *__pyx_t_4 = NULL;
+  Py_ssize_t __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *(*__pyx_t_7)(PyObject *);
   PyObject *__pyx_t_8 = NULL;
-  Py_ssize_t __pyx_t_9;
-  PyObject *__pyx_t_10 = NULL;
-  PyObject *(*__pyx_t_11)(PyObject *);
-  PyObject *__pyx_t_12 = NULL;
-  PyObject *__pyx_t_13 = NULL;
-  PyObject *(*__pyx_t_14)(PyObject *);
-  unsigned int __pyx_t_15;
-  Py_ssize_t __pyx_t_16;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *(*__pyx_t_10)(PyObject *);
+  unsigned int __pyx_t_11;
+  double __pyx_t_12;
+  int __pyx_t_13;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("fit", 0);
+  __Pyx_RefNannySetupContext("evaluate", 0);
 
   /* "kaggler\online_model\ftrl_fm.pyx":281
  * 
- *     def fit(self,trainingFile,hashSalt='salt',n_epochs=5,reportFrequency=10000):
+ *     def evaluate(self,validationFile,eval_metric,hashSalt='salt'):
  *         start = datetime.now()             # <<<<<<<<<<<<<<
  *         # initialize a FM learner
  *         learner = self
@@ -6445,24 +6425,586 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
   /* "kaggler\online_model\ftrl_fm.pyx":294
  *         cdef double p
  *         cdef double loss
+ *         cdef list y_preds = []             # <<<<<<<<<<<<<<
+ *         cdef list y_test = []
+ *         for t, ID, x, y in data(validationFile, self.D, hashSalt):
+ */
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 294; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_y_preds = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":295
+ *         cdef double loss
+ *         cdef list y_preds = []
+ *         cdef list y_test = []             # <<<<<<<<<<<<<<
+ *         for t, ID, x, y in data(validationFile, self.D, hashSalt):
+ *             p = learner.predict_one(x)
+ */
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_y_test = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":296
+ *         cdef list y_preds = []
+ *         cdef list y_test = []
+ *         for t, ID, x, y in data(validationFile, self.D, hashSalt):             # <<<<<<<<<<<<<<
+ *             p = learner.predict_one(x)
+ *             y_preds.append(p)
+ */
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_data); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->D); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = NULL;
+  __pyx_t_5 = 0;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __pyx_t_5 = 1;
+    }
+  }
+  __pyx_t_6 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_6);
+  if (__pyx_t_4) {
+    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
+  }
+  __Pyx_INCREF(__pyx_v_validationFile);
+  PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_5, __pyx_v_validationFile);
+  __Pyx_GIVEREF(__pyx_v_validationFile);
+  PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_2);
+  __Pyx_INCREF(__pyx_v_hashSalt);
+  PyTuple_SET_ITEM(__pyx_t_6, 2+__pyx_t_5, __pyx_v_hashSalt);
+  __Pyx_GIVEREF(__pyx_v_hashSalt);
+  __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
+    __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_5 = 0;
+    __pyx_t_7 = NULL;
+  } else {
+    __pyx_t_5 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_7)) {
+      if (likely(PyList_CheckExact(__pyx_t_3))) {
+        if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_3)) break;
+        #if CYTHON_COMPILING_IN_CPYTHON
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        #endif
+      } else {
+        if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
+        #if CYTHON_COMPILING_IN_CPYTHON
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        #endif
+      }
+    } else {
+      __pyx_t_1 = __pyx_t_7(__pyx_t_3);
+      if (unlikely(!__pyx_t_1)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
+      PyObject* sequence = __pyx_t_1;
+      #if CYTHON_COMPILING_IN_CPYTHON
+      Py_ssize_t size = Py_SIZE(sequence);
+      #else
+      Py_ssize_t size = PySequence_Size(sequence);
+      #endif
+      if (unlikely(size != 4)) {
+        if (size > 4) __Pyx_RaiseTooManyValuesError(4);
+        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+      #if CYTHON_COMPILING_IN_CPYTHON
+      if (likely(PyTuple_CheckExact(sequence))) {
+        __pyx_t_6 = PyTuple_GET_ITEM(sequence, 0); 
+        __pyx_t_2 = PyTuple_GET_ITEM(sequence, 1); 
+        __pyx_t_4 = PyTuple_GET_ITEM(sequence, 2); 
+        __pyx_t_8 = PyTuple_GET_ITEM(sequence, 3); 
+      } else {
+        __pyx_t_6 = PyList_GET_ITEM(sequence, 0); 
+        __pyx_t_2 = PyList_GET_ITEM(sequence, 1); 
+        __pyx_t_4 = PyList_GET_ITEM(sequence, 2); 
+        __pyx_t_8 = PyList_GET_ITEM(sequence, 3); 
+      }
+      __Pyx_INCREF(__pyx_t_6);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_8);
+      #else
+      {
+        Py_ssize_t i;
+        PyObject** temps[4] = {&__pyx_t_6,&__pyx_t_2,&__pyx_t_4,&__pyx_t_8};
+        for (i=0; i < 4; i++) {
+          PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(item);
+          *(temps[i]) = item;
+        }
+      }
+      #endif
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    } else {
+      Py_ssize_t index = -1;
+      PyObject** temps[4] = {&__pyx_t_6,&__pyx_t_2,&__pyx_t_4,&__pyx_t_8};
+      __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_9);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_10 = Py_TYPE(__pyx_t_9)->tp_iternext;
+      for (index=0; index < 4; index++) {
+        PyObject* item = __pyx_t_10(__pyx_t_9); if (unlikely(!item)) goto __pyx_L5_unpacking_failed;
+        __Pyx_GOTREF(item);
+        *(temps[index]) = item;
+      }
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = NULL;
+      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+      goto __pyx_L6_unpacking_done;
+      __pyx_L5_unpacking_failed:;
+      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+      __pyx_t_10 = NULL;
+      if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_L6_unpacking_done:;
+    }
+    __pyx_t_11 = __Pyx_PyInt_As_unsigned_int(__pyx_t_6); if (unlikely((__pyx_t_11 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    if (!(likely(PyList_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_4)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_v_t = __pyx_t_11;
+    __Pyx_XDECREF_SET(__pyx_v_ID, __pyx_t_2);
+    __pyx_t_2 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_x, ((PyObject*)__pyx_t_4));
+    __pyx_t_4 = 0;
+    __pyx_v_y = __pyx_t_12;
+
+    /* "kaggler\online_model\ftrl_fm.pyx":297
+ *         cdef list y_test = []
+ *         for t, ID, x, y in data(validationFile, self.D, hashSalt):
+ *             p = learner.predict_one(x)             # <<<<<<<<<<<<<<
+ *             y_preds.append(p)
+ *             y_test.append(y)
+ */
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_learner), __pyx_n_s_predict_one); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 297; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_4 = NULL;
+    if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_8))) {
+      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_8);
+      if (likely(__pyx_t_4)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
+        __Pyx_INCREF(__pyx_t_4);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_8, function);
+      }
+    }
+    if (!__pyx_t_4) {
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_v_x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 297; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_1);
+    } else {
+      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 297; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_2);
+      PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
+      __Pyx_INCREF(__pyx_v_x);
+      PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_v_x);
+      __Pyx_GIVEREF(__pyx_v_x);
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 297; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 297; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_v_p = __pyx_t_12;
+
+    /* "kaggler\online_model\ftrl_fm.pyx":298
+ *         for t, ID, x, y in data(validationFile, self.D, hashSalt):
+ *             p = learner.predict_one(x)
+ *             y_preds.append(p)             # <<<<<<<<<<<<<<
+ *             y_test.append(y)
+ *         score = eval_metric(y_preds,y_preds)
+ */
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_y_preds, __pyx_t_1); if (unlikely(__pyx_t_13 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "kaggler\online_model\ftrl_fm.pyx":299
+ *             p = learner.predict_one(x)
+ *             y_preds.append(p)
+ *             y_test.append(y)             # <<<<<<<<<<<<<<
+ *         score = eval_metric(y_preds,y_preds)
+ *         return score
+ */
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_y); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_y_test, __pyx_t_1); if (unlikely(__pyx_t_13 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 299; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "kaggler\online_model\ftrl_fm.pyx":296
+ *         cdef list y_preds = []
+ *         cdef list y_test = []
+ *         for t, ID, x, y in data(validationFile, self.D, hashSalt):             # <<<<<<<<<<<<<<
+ *             p = learner.predict_one(x)
+ *             y_preds.append(p)
+ */
+  }
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":300
+ *             y_preds.append(p)
+ *             y_test.append(y)
+ *         score = eval_metric(y_preds,y_preds)             # <<<<<<<<<<<<<<
+ *         return score
+ * 
+ */
+  __Pyx_INCREF(__pyx_v_eval_metric);
+  __pyx_t_1 = __pyx_v_eval_metric; __pyx_t_8 = NULL;
+  __pyx_t_5 = 0;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_8)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_8);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+      __pyx_t_5 = 1;
+    }
+  }
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__pyx_t_8) {
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
+  }
+  __Pyx_INCREF(__pyx_v_y_preds);
+  PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_5, __pyx_v_y_preds);
+  __Pyx_GIVEREF(__pyx_v_y_preds);
+  __Pyx_INCREF(__pyx_v_y_preds);
+  PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_5, __pyx_v_y_preds);
+  __Pyx_GIVEREF(__pyx_v_y_preds);
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_score = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":301
+ *             y_test.append(y)
+ *         score = eval_metric(y_preds,y_preds)
+ *         return score             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_score);
+  __pyx_r = __pyx_v_score;
+  goto __pyx_L0;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":280
+ * 
+ * 
+ *     def evaluate(self,validationFile,eval_metric,hashSalt='salt'):             # <<<<<<<<<<<<<<
+ *         start = datetime.now()
+ *         # initialize a FM learner
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_AddTraceback("kaggler.online_model.ftrl_fm.FTRL_FM.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_start);
+  __Pyx_XDECREF((PyObject *)__pyx_v_learner);
+  __Pyx_XDECREF(__pyx_v_x);
+  __Pyx_XDECREF(__pyx_v_y_preds);
+  __Pyx_XDECREF(__pyx_v_y_test);
+  __Pyx_XDECREF(__pyx_v_ID);
+  __Pyx_XDECREF(__pyx_v_score);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "kaggler\online_model\ftrl_fm.pyx":305
+ * 
+ * 
+ *     def fit(self,trainingFile,hashSalt='salt',n_epochs=5,reportFrequency=10000,validationFile=None,eval_metric=None):             # <<<<<<<<<<<<<<
+ *         start = datetime.now()
+ *         # initialize a FM learner
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_25fit(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_25fit(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_trainingFile = 0;
+  PyObject *__pyx_v_hashSalt = 0;
+  PyObject *__pyx_v_n_epochs = 0;
+  PyObject *__pyx_v_reportFrequency = 0;
+  PyObject *__pyx_v_validationFile = 0;
+  PyObject *__pyx_v_eval_metric = 0;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("fit (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_trainingFile,&__pyx_n_s_hashSalt,&__pyx_n_s_n_epochs,&__pyx_n_s_reportFrequency,&__pyx_n_s_validationFile,&__pyx_n_s_eval_metric,0};
+    PyObject* values[6] = {0,0,0,0,0,0};
+    values[1] = ((PyObject *)__pyx_n_s_salt);
+    values[2] = ((PyObject *)__pyx_int_5);
+    values[3] = ((PyObject *)__pyx_int_10000);
+    values[4] = ((PyObject *)Py_None);
+    values[5] = ((PyObject *)Py_None);
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_trainingFile)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        case  1:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_hashSalt);
+          if (value) { values[1] = value; kw_args--; }
+        }
+        case  2:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_epochs);
+          if (value) { values[2] = value; kw_args--; }
+        }
+        case  3:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_reportFrequency);
+          if (value) { values[3] = value; kw_args--; }
+        }
+        case  4:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_validationFile);
+          if (value) { values[4] = value; kw_args--; }
+        }
+        case  5:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_eval_metric);
+          if (value) { values[5] = value; kw_args--; }
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fit") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      }
+    } else {
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+    }
+    __pyx_v_trainingFile = values[0];
+    __pyx_v_hashSalt = values[1];
+    __pyx_v_n_epochs = values[2];
+    __pyx_v_reportFrequency = values[3];
+    __pyx_v_validationFile = values[4];
+    __pyx_v_eval_metric = values[5];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("fit", 0, 1, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("kaggler.online_model.ftrl_fm.FTRL_FM.fit", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_24fit(((struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *)__pyx_v_self), __pyx_v_trainingFile, __pyx_v_hashSalt, __pyx_v_n_epochs, __pyx_v_reportFrequency, __pyx_v_validationFile, __pyx_v_eval_metric);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_24fit(struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_self, PyObject *__pyx_v_trainingFile, PyObject *__pyx_v_hashSalt, PyObject *__pyx_v_n_epochs, PyObject *__pyx_v_reportFrequency, PyObject *__pyx_v_validationFile, PyObject *__pyx_v_eval_metric) {
+  PyObject *__pyx_v_start = NULL;
+  struct __pyx_obj_7kaggler_12online_model_7ftrl_fm_FTRL_FM *__pyx_v_learner = NULL;
+  int __pyx_v_e;
+  double __pyx_v_cvLoss;
+  double __pyx_v_cvCount;
+  double __pyx_v_progressiveLoss;
+  double __pyx_v_progressiveCount;
+  PyObject *__pyx_v_x = 0;
+  double __pyx_v_y;
+  unsigned int __pyx_v_t;
+  double __pyx_v_p;
+  double __pyx_v_loss;
+  CYTHON_UNUSED PyObject *__pyx_v_ID = NULL;
+  PyObject *__pyx_v_eval_score = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  long __pyx_t_4;
+  int __pyx_t_5;
+  int __pyx_t_6;
+  double __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
+  Py_ssize_t __pyx_t_9;
+  PyObject *__pyx_t_10 = NULL;
+  PyObject *(*__pyx_t_11)(PyObject *);
+  PyObject *__pyx_t_12 = NULL;
+  PyObject *__pyx_t_13 = NULL;
+  PyObject *(*__pyx_t_14)(PyObject *);
+  unsigned int __pyx_t_15;
+  Py_ssize_t __pyx_t_16;
+  int __pyx_t_17;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("fit", 0);
+
+  /* "kaggler\online_model\ftrl_fm.pyx":306
+ * 
+ *     def fit(self,trainingFile,hashSalt='salt',n_epochs=5,reportFrequency=10000,validationFile=None,eval_metric=None):
+ *         start = datetime.now()             # <<<<<<<<<<<<<<
+ *         # initialize a FM learner
+ *         learner = self
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_datetime); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_now); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  if (__pyx_t_2) {
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  } else {
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_start = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":308
+ *         start = datetime.now()
+ *         # initialize a FM learner
+ *         learner = self             # <<<<<<<<<<<<<<
+ *         cdef int e
+ *         cdef double cvLoss = 0.
+ */
+  __Pyx_INCREF(((PyObject *)__pyx_v_self));
+  __pyx_v_learner = __pyx_v_self;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":310
+ *         learner = self
+ *         cdef int e
+ *         cdef double cvLoss = 0.             # <<<<<<<<<<<<<<
+ *         cdef double cvCount = 0.
+ *         cdef double progressiveLoss = 0.
+ */
+  __pyx_v_cvLoss = 0.;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":311
+ *         cdef int e
+ *         cdef double cvLoss = 0.
+ *         cdef double cvCount = 0.             # <<<<<<<<<<<<<<
+ *         cdef double progressiveLoss = 0.
+ *         cdef double progressiveCount = 0.
+ */
+  __pyx_v_cvCount = 0.;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":312
+ *         cdef double cvLoss = 0.
+ *         cdef double cvCount = 0.
+ *         cdef double progressiveLoss = 0.             # <<<<<<<<<<<<<<
+ *         cdef double progressiveCount = 0.
+ *         cdef list x
+ */
+  __pyx_v_progressiveLoss = 0.;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":313
+ *         cdef double cvCount = 0.
+ *         cdef double progressiveLoss = 0.
+ *         cdef double progressiveCount = 0.             # <<<<<<<<<<<<<<
+ *         cdef list x
+ *         cdef double y
+ */
+  __pyx_v_progressiveCount = 0.;
+
+  /* "kaggler\online_model\ftrl_fm.pyx":319
+ *         cdef double p
+ *         cdef double loss
  *         print("Start Training:")             # <<<<<<<<<<<<<<
  *         for e in range(n_epochs):
  * 
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_Start_Training) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 294; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_kp_s_Start_Training) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "kaggler\online_model\ftrl_fm.pyx":295
+  /* "kaggler\online_model\ftrl_fm.pyx":320
  *         cdef double loss
  *         print("Start Training:")
  *         for e in range(n_epochs):             # <<<<<<<<<<<<<<
  * 
  *             # if it is the first epoch, then don't use L1_fm or L2_fm
  */
-  __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_v_n_epochs); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyInt_As_long(__pyx_v_n_epochs); if (unlikely((__pyx_t_4 == (long)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 320; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_e = __pyx_t_5;
 
-    /* "kaggler\online_model\ftrl_fm.pyx":298
+    /* "kaggler\online_model\ftrl_fm.pyx":323
  * 
  *             # if it is the first epoch, then don't use L1_fm or L2_fm
  *             if e == 0:             # <<<<<<<<<<<<<<
@@ -6472,7 +7014,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
     __pyx_t_6 = ((__pyx_v_e == 0) != 0);
     if (__pyx_t_6) {
 
-      /* "kaggler\online_model\ftrl_fm.pyx":299
+      /* "kaggler\online_model\ftrl_fm.pyx":324
  *             # if it is the first epoch, then don't use L1_fm or L2_fm
  *             if e == 0:
  *                 learner.L1_fm = 0.             # <<<<<<<<<<<<<<
@@ -6481,7 +7023,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
  */
       __pyx_v_learner->L1_fm = 0.;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":300
+      /* "kaggler\online_model\ftrl_fm.pyx":325
  *             if e == 0:
  *                 learner.L1_fm = 0.
  *                 learner.L2_fm = 0.             # <<<<<<<<<<<<<<
@@ -6493,7 +7035,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
     }
     /*else*/ {
 
-      /* "kaggler\online_model\ftrl_fm.pyx":302
+      /* "kaggler\online_model\ftrl_fm.pyx":327
  *                 learner.L2_fm = 0.
  *             else:
  *                 learner.L1_fm = learner.L1_fm_tmp             # <<<<<<<<<<<<<<
@@ -6503,7 +7045,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
       __pyx_t_7 = __pyx_v_learner->L1_fm_tmp;
       __pyx_v_learner->L1_fm = __pyx_t_7;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":303
+      /* "kaggler\online_model\ftrl_fm.pyx":328
  *             else:
  *                 learner.L1_fm = learner.L1_fm_tmp
  *                 learner.L2_fm = learner.L1_fm_tmp             # <<<<<<<<<<<<<<
@@ -6515,16 +7057,16 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
     }
     __pyx_L5:;
 
-    /* "kaggler\online_model\ftrl_fm.pyx":306
+    /* "kaggler\online_model\ftrl_fm.pyx":331
  * 
  * 
  *             for t, ID, x, y in data(trainingFile, self.D, hashSalt):             # <<<<<<<<<<<<<<
  *                 p = learner.predict_one(x)
  *                 loss = logLoss(p, y)
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_data); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_data); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->D); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_self->D); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_8 = NULL;
     __pyx_t_9 = 0;
@@ -6538,7 +7080,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
         __pyx_t_9 = 1;
       }
     }
-    __pyx_t_10 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_10 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_10);
     if (__pyx_t_8) {
       PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
@@ -6552,7 +7094,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
     PyTuple_SET_ITEM(__pyx_t_10, 2+__pyx_t_9, __pyx_v_hashSalt);
     __Pyx_GIVEREF(__pyx_v_hashSalt);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6560,9 +7102,9 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
       __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_9 = 0;
       __pyx_t_11 = NULL;
     } else {
-      __pyx_t_9 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_11 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_11 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
@@ -6570,16 +7112,16 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
         if (likely(PyList_CheckExact(__pyx_t_3))) {
           if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #endif
         } else {
           if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #endif
         }
       } else {
@@ -6588,7 +7130,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           break;
         }
@@ -6604,7 +7146,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
         if (unlikely(size != 4)) {
           if (size > 4) __Pyx_RaiseTooManyValuesError(4);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         #if CYTHON_COMPILING_IN_CPYTHON
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -6627,7 +7169,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
           Py_ssize_t i;
           PyObject** temps[4] = {&__pyx_t_10,&__pyx_t_2,&__pyx_t_8,&__pyx_t_12};
           for (i=0; i < 4; i++) {
-            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(item);
             *(temps[i]) = item;
           }
@@ -6637,7 +7179,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
       } else {
         Py_ssize_t index = -1;
         PyObject** temps[4] = {&__pyx_t_10,&__pyx_t_2,&__pyx_t_8,&__pyx_t_12};
-        __pyx_t_13 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_13 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_14 = Py_TYPE(__pyx_t_13)->tp_iternext;
@@ -6646,7 +7188,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
           __Pyx_GOTREF(item);
           *(temps[index]) = item;
         }
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_13), 4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_13), 4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __pyx_t_14 = NULL;
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         goto __pyx_L9_unpacking_done;
@@ -6654,13 +7196,13 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __pyx_t_14 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __pyx_L9_unpacking_done:;
       }
-      __pyx_t_15 = __Pyx_PyInt_As_unsigned_int(__pyx_t_10); if (unlikely((__pyx_t_15 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_15 = __Pyx_PyInt_As_unsigned_int(__pyx_t_10); if (unlikely((__pyx_t_15 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (!(likely(PyList_CheckExact(__pyx_t_8))||((__pyx_t_8) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_8)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_12); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (!(likely(PyList_CheckExact(__pyx_t_8))||((__pyx_t_8) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_8)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_12); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 331; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
       __pyx_v_t = __pyx_t_15;
       __Pyx_XDECREF_SET(__pyx_v_ID, __pyx_t_2);
@@ -6669,14 +7211,14 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
       __pyx_t_8 = 0;
       __pyx_v_y = __pyx_t_7;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":307
+      /* "kaggler\online_model\ftrl_fm.pyx":332
  * 
  *             for t, ID, x, y in data(trainingFile, self.D, hashSalt):
  *                 p = learner.predict_one(x)             # <<<<<<<<<<<<<<
  *                 loss = logLoss(p, y)
  *                 learner.update(x, p, y)
  */
-      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_learner), __pyx_n_s_predict_one); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_learner), __pyx_n_s_predict_one); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_12);
       __pyx_t_8 = NULL;
       if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_12))) {
@@ -6689,36 +7231,36 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
         }
       }
       if (!__pyx_t_8) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_v_x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_v_x); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
       } else {
-        __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
         __Pyx_INCREF(__pyx_v_x);
         PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_v_x);
         __Pyx_GIVEREF(__pyx_v_x);
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       }
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 332; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_p = __pyx_t_7;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":308
+      /* "kaggler\online_model\ftrl_fm.pyx":333
  *             for t, ID, x, y in data(trainingFile, self.D, hashSalt):
  *                 p = learner.predict_one(x)
  *                 loss = logLoss(p, y)             # <<<<<<<<<<<<<<
  *                 learner.update(x, p, y)
  *                 progressiveLoss += loss
  */
-      __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_logLoss); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_logLoss); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_12);
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_8 = PyFloat_FromDouble(__pyx_v_y); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyFloat_FromDouble(__pyx_v_y); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __pyx_t_10 = NULL;
       __pyx_t_16 = 0;
@@ -6732,7 +7274,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
           __pyx_t_16 = 1;
         }
       }
-      __pyx_t_13 = PyTuple_New(2+__pyx_t_16); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_13 = PyTuple_New(2+__pyx_t_16); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_13);
       if (__pyx_t_10) {
         PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_10); __Pyx_GIVEREF(__pyx_t_10); __pyx_t_10 = NULL;
@@ -6743,26 +7285,26 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
       __Pyx_GIVEREF(__pyx_t_8);
       __pyx_t_2 = 0;
       __pyx_t_8 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_13, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_13, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_loss = __pyx_t_7;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":309
+      /* "kaggler\online_model\ftrl_fm.pyx":334
  *                 p = learner.predict_one(x)
  *                 loss = logLoss(p, y)
  *                 learner.update(x, p, y)             # <<<<<<<<<<<<<<
  *                 progressiveLoss += loss
  *                 progressiveCount += 1.
  */
-      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_learner), __pyx_n_s_update); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_learner), __pyx_n_s_update); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_12);
-      __pyx_t_13 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_13 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_13);
-      __pyx_t_8 = PyFloat_FromDouble(__pyx_v_y); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyFloat_FromDouble(__pyx_v_y); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __pyx_t_2 = NULL;
       __pyx_t_16 = 0;
@@ -6776,7 +7318,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
           __pyx_t_16 = 1;
         }
       }
-      __pyx_t_10 = PyTuple_New(3+__pyx_t_16); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = PyTuple_New(3+__pyx_t_16); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_10);
       if (__pyx_t_2) {
         PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
@@ -6790,13 +7332,13 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
       __Pyx_GIVEREF(__pyx_t_8);
       __pyx_t_13 = 0;
       __pyx_t_8 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":310
+      /* "kaggler\online_model\ftrl_fm.pyx":335
  *                 loss = logLoss(p, y)
  *                 learner.update(x, p, y)
  *                 progressiveLoss += loss             # <<<<<<<<<<<<<<
@@ -6805,7 +7347,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
  */
       __pyx_v_progressiveLoss = (__pyx_v_progressiveLoss + __pyx_v_loss);
 
-      /* "kaggler\online_model\ftrl_fm.pyx":311
+      /* "kaggler\online_model\ftrl_fm.pyx":336
  *                 learner.update(x, p, y)
  *                 progressiveLoss += loss
  *                 progressiveCount += 1.             # <<<<<<<<<<<<<<
@@ -6814,34 +7356,34 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
  */
       __pyx_v_progressiveCount = (__pyx_v_progressiveCount + 1.);
 
-      /* "kaggler\online_model\ftrl_fm.pyx":312
+      /* "kaggler\online_model\ftrl_fm.pyx":337
  *                 progressiveLoss += loss
  *                 progressiveCount += 1.
  *                 if t % reportFrequency == 0:             # <<<<<<<<<<<<<<
  *                     print("Epoch %d\tcount: %d\tProgressive Loss: %f" % (e, t, progressiveLoss / progressiveCount))
- * 
+ *                     if validationFile!=None and eval_metric!=None:
  */
-      __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_t); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_t); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_12 = PyNumber_Remainder(__pyx_t_1, __pyx_v_reportFrequency); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_12 = PyNumber_Remainder(__pyx_t_1, __pyx_v_reportFrequency); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyObject_RichCompare(__pyx_t_12, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyObject_RichCompare(__pyx_t_12, __pyx_int_0, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_6) {
 
-        /* "kaggler\online_model\ftrl_fm.pyx":313
+        /* "kaggler\online_model\ftrl_fm.pyx":338
  *                 progressiveCount += 1.
  *                 if t % reportFrequency == 0:
  *                     print("Epoch %d\tcount: %d\tProgressive Loss: %f" % (e, t, progressiveLoss / progressiveCount))             # <<<<<<<<<<<<<<
- * 
- *             print("Epoch %d finished.\tvalidation loss: %f\telapsed time: %s" % (e, cvLoss / cvCount, str(datetime.now() - start)))
+ *                     if validationFile!=None and eval_metric!=None:
+ *                         eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
  */
-        __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_e); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_e); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_12 = __Pyx_PyInt_From_unsigned_int(__pyx_v_t); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_12 = __Pyx_PyInt_From_unsigned_int(__pyx_v_t); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_12);
         if (unlikely(__pyx_v_progressiveCount == 0)) {
           #ifdef WITH_THREAD
@@ -6851,11 +7393,11 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
           #ifdef WITH_THREAD
           PyGILState_Release(__pyx_gilstate_save);
           #endif
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
-        __pyx_t_10 = PyFloat_FromDouble((__pyx_v_progressiveLoss / __pyx_v_progressiveCount)); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_10 = PyFloat_FromDouble((__pyx_v_progressiveLoss / __pyx_v_progressiveCount)); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_8);
         PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
         __Pyx_GIVEREF(__pyx_t_1);
@@ -6866,16 +7408,138 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
         __pyx_t_1 = 0;
         __pyx_t_12 = 0;
         __pyx_t_10 = 0;
-        __pyx_t_10 = __Pyx_PyString_Format(__pyx_kp_s_Epoch_d_count_d_Progressive_Loss, __pyx_t_8); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_10 = __Pyx_PyString_Format(__pyx_kp_s_Epoch_d_count_d_Progressive_Loss, __pyx_t_8); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (__Pyx_PrintOne(0, __pyx_t_10) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        if (__Pyx_PrintOne(0, __pyx_t_10) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+
+        /* "kaggler\online_model\ftrl_fm.pyx":339
+ *                 if t % reportFrequency == 0:
+ *                     print("Epoch %d\tcount: %d\tProgressive Loss: %f" % (e, t, progressiveLoss / progressiveCount))
+ *                     if validationFile!=None and eval_metric!=None:             # <<<<<<<<<<<<<<
+ *                         eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
+ *                         print("Epoch %d\tcount: %d\tEvaludation score: %f" % (e, t, eval_score))
+ */
+        __pyx_t_10 = PyObject_RichCompare(__pyx_v_validationFile, Py_None, Py_NE); __Pyx_XGOTREF(__pyx_t_10); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_17 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely(__pyx_t_17 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        if (__pyx_t_17) {
+        } else {
+          __pyx_t_6 = __pyx_t_17;
+          goto __pyx_L12_bool_binop_done;
+        }
+        __pyx_t_10 = PyObject_RichCompare(__pyx_v_eval_metric, Py_None, Py_NE); __Pyx_XGOTREF(__pyx_t_10); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_17 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely(__pyx_t_17 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        __pyx_t_6 = __pyx_t_17;
+        __pyx_L12_bool_binop_done:;
+        if (__pyx_t_6) {
+
+          /* "kaggler\online_model\ftrl_fm.pyx":340
+ *                     print("Epoch %d\tcount: %d\tProgressive Loss: %f" % (e, t, progressiveLoss / progressiveCount))
+ *                     if validationFile!=None and eval_metric!=None:
+ *                         eval_score = self.evaluate(copy.copy(validationFile),eval_metric)             # <<<<<<<<<<<<<<
+ *                         print("Epoch %d\tcount: %d\tEvaludation score: %f" % (e, t, eval_score))
+ * 
+ */
+          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(__pyx_t_8);
+          __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_copy); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(__pyx_t_1);
+          __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_copy); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(__pyx_t_13);
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          __pyx_t_1 = NULL;
+          if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_13))) {
+            __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_13);
+            if (likely(__pyx_t_1)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_13);
+              __Pyx_INCREF(__pyx_t_1);
+              __Pyx_INCREF(function);
+              __Pyx_DECREF_SET(__pyx_t_13, function);
+            }
+          }
+          if (!__pyx_t_1) {
+            __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_v_validationFile); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __Pyx_GOTREF(__pyx_t_12);
+          } else {
+            __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __Pyx_GOTREF(__pyx_t_2);
+            PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1); __Pyx_GIVEREF(__pyx_t_1); __pyx_t_1 = NULL;
+            __Pyx_INCREF(__pyx_v_validationFile);
+            PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_v_validationFile);
+            __Pyx_GIVEREF(__pyx_v_validationFile);
+            __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_13, __pyx_t_2, NULL); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __Pyx_GOTREF(__pyx_t_12);
+            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          }
+          __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+          __pyx_t_13 = NULL;
+          __pyx_t_16 = 0;
+          if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_8))) {
+            __pyx_t_13 = PyMethod_GET_SELF(__pyx_t_8);
+            if (likely(__pyx_t_13)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
+              __Pyx_INCREF(__pyx_t_13);
+              __Pyx_INCREF(function);
+              __Pyx_DECREF_SET(__pyx_t_8, function);
+              __pyx_t_16 = 1;
+            }
+          }
+          __pyx_t_2 = PyTuple_New(2+__pyx_t_16); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(__pyx_t_2);
+          if (__pyx_t_13) {
+            PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_13); __Pyx_GIVEREF(__pyx_t_13); __pyx_t_13 = NULL;
+          }
+          PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_16, __pyx_t_12);
+          __Pyx_GIVEREF(__pyx_t_12);
+          __Pyx_INCREF(__pyx_v_eval_metric);
+          PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_16, __pyx_v_eval_metric);
+          __Pyx_GIVEREF(__pyx_v_eval_metric);
+          __pyx_t_12 = 0;
+          __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_2, NULL); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(__pyx_t_10);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_eval_score, __pyx_t_10);
+          __pyx_t_10 = 0;
+
+          /* "kaggler\online_model\ftrl_fm.pyx":341
+ *                     if validationFile!=None and eval_metric!=None:
+ *                         eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
+ *                         print("Epoch %d\tcount: %d\tEvaludation score: %f" % (e, t, eval_score))             # <<<<<<<<<<<<<<
+ * 
+ *             print("Epoch %d finished.\tvalidation loss: %f\telapsed time: %s" % (e, cvLoss / cvCount, str(datetime.now() - start)))
+ */
+          __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_e); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(__pyx_t_10);
+          __pyx_t_8 = __Pyx_PyInt_From_unsigned_int(__pyx_v_t); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(__pyx_t_8);
+          __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(__pyx_t_2);
+          PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_10);
+          __Pyx_GIVEREF(__pyx_t_10);
+          PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_8);
+          __Pyx_GIVEREF(__pyx_t_8);
+          __Pyx_INCREF(__pyx_v_eval_score);
+          PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_eval_score);
+          __Pyx_GIVEREF(__pyx_v_eval_score);
+          __pyx_t_10 = 0;
+          __pyx_t_8 = 0;
+          __pyx_t_8 = __Pyx_PyString_Format(__pyx_kp_s_Epoch_d_count_d_Evaludation_scor, __pyx_t_2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_GOTREF(__pyx_t_8);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          if (__Pyx_PrintOne(0, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+          goto __pyx_L11;
+        }
+        __pyx_L11:;
         goto __pyx_L10;
       }
       __pyx_L10:;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":306
+      /* "kaggler\online_model\ftrl_fm.pyx":331
  * 
  * 
  *             for t, ID, x, y in data(trainingFile, self.D, hashSalt):             # <<<<<<<<<<<<<<
@@ -6885,14 +7549,14 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "kaggler\online_model\ftrl_fm.pyx":315
- *                     print("Epoch %d\tcount: %d\tProgressive Loss: %f" % (e, t, progressiveLoss / progressiveCount))
+    /* "kaggler\online_model\ftrl_fm.pyx":343
+ *                         print("Epoch %d\tcount: %d\tEvaludation score: %f" % (e, t, eval_score))
  * 
  *             print("Epoch %d finished.\tvalidation loss: %f\telapsed time: %s" % (e, cvLoss / cvCount, str(datetime.now() - start)))             # <<<<<<<<<<<<<<
- * 
- * 
+ *             if validationFile!=None and eval_metric!=None:
+ *                 eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
  */
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_e); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_e); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     if (unlikely(__pyx_v_cvCount == 0)) {
       #ifdef WITH_THREAD
@@ -6902,66 +7566,188 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
       #ifdef WITH_THREAD
       PyGILState_Release(__pyx_gilstate_save);
       #endif
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_10 = PyFloat_FromDouble((__pyx_v_cvLoss / __pyx_v_cvCount)); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyFloat_FromDouble((__pyx_v_cvLoss / __pyx_v_cvCount)); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_datetime); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_12 = __Pyx_GetModuleGlobalName(__pyx_n_s_datetime); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_now); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_12);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_now); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-    __pyx_t_12 = NULL;
-    if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
-      __pyx_t_12 = PyMethod_GET_SELF(__pyx_t_1);
-      if (likely(__pyx_t_12)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-        __Pyx_INCREF(__pyx_t_12);
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    __pyx_t_10 = NULL;
+    if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_12))) {
+      __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_12);
+      if (likely(__pyx_t_10)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_12);
+        __Pyx_INCREF(__pyx_t_10);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_1, function);
+        __Pyx_DECREF_SET(__pyx_t_12, function);
       }
     }
-    if (__pyx_t_12) {
-      __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_12); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    if (__pyx_t_10) {
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_10); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     } else {
-      __pyx_t_8 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_12); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Subtract(__pyx_t_8, __pyx_v_start); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_1);
-    __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3);
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    __pyx_t_12 = PyNumber_Subtract(__pyx_t_2, __pyx_v_start); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_12);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_12);
+    __Pyx_GIVEREF(__pyx_t_12);
+    __pyx_t_12 = 0;
+    __pyx_t_12 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_2, NULL); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_12);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_10);
-    __Pyx_GIVEREF(__pyx_t_10);
-    PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_8);
+    __Pyx_GIVEREF(__pyx_t_8);
+    PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_12);
+    __Pyx_GIVEREF(__pyx_t_12);
     __pyx_t_3 = 0;
-    __pyx_t_10 = 0;
-    __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_Epoch_d_finished_validation_loss, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_8 = 0;
+    __pyx_t_12 = 0;
+    __pyx_t_12 = __Pyx_PyString_Format(__pyx_kp_s_Epoch_d_finished_validation_loss, __pyx_t_2); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_12);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (__Pyx_PrintOne(0, __pyx_t_12) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+
+    /* "kaggler\online_model\ftrl_fm.pyx":344
+ * 
+ *             print("Epoch %d finished.\tvalidation loss: %f\telapsed time: %s" % (e, cvLoss / cvCount, str(datetime.now() - start)))
+ *             if validationFile!=None and eval_metric!=None:             # <<<<<<<<<<<<<<
+ *                 eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
+ *                 print("Epoch %d\finished: %d\tEvaludation score: %f" % (e, t, eval_score))
+ */
+    __pyx_t_12 = PyObject_RichCompare(__pyx_v_validationFile, Py_None, Py_NE); __Pyx_XGOTREF(__pyx_t_12); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_17 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_17 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    if (__pyx_t_17) {
+    } else {
+      __pyx_t_6 = __pyx_t_17;
+      goto __pyx_L15_bool_binop_done;
+    }
+    __pyx_t_12 = PyObject_RichCompare(__pyx_v_eval_metric, Py_None, Py_NE); __Pyx_XGOTREF(__pyx_t_12); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_17 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_17 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    __pyx_t_6 = __pyx_t_17;
+    __pyx_L15_bool_binop_done:;
+    if (__pyx_t_6) {
+
+      /* "kaggler\online_model\ftrl_fm.pyx":345
+ *             print("Epoch %d finished.\tvalidation loss: %f\telapsed time: %s" % (e, cvLoss / cvCount, str(datetime.now() - start)))
+ *             if validationFile!=None and eval_metric!=None:
+ *                 eval_score = self.evaluate(copy.copy(validationFile),eval_metric)             # <<<<<<<<<<<<<<
+ *                 print("Epoch %d\finished: %d\tEvaludation score: %f" % (e, t, eval_score))
+ * 
+ */
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_evaluate); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_copy); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_copy); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_10);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_t_3 = NULL;
+      if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_10))) {
+        __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_10);
+        if (likely(__pyx_t_3)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
+          __Pyx_INCREF(__pyx_t_3);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_10, function);
+        }
+      }
+      if (!__pyx_t_3) {
+        __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_v_validationFile); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_8);
+      } else {
+        __pyx_t_13 = PyTuple_New(1+1); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_13);
+        PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
+        __Pyx_INCREF(__pyx_v_validationFile);
+        PyTuple_SET_ITEM(__pyx_t_13, 0+1, __pyx_v_validationFile);
+        __Pyx_GIVEREF(__pyx_v_validationFile);
+        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_13, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_8);
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __pyx_t_10 = NULL;
+      __pyx_t_9 = 0;
+      if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
+        __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_2);
+        if (likely(__pyx_t_10)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+          __Pyx_INCREF(__pyx_t_10);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_2, function);
+          __pyx_t_9 = 1;
+        }
+      }
+      __pyx_t_13 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_13);
+      if (__pyx_t_10) {
+        PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_10); __Pyx_GIVEREF(__pyx_t_10); __pyx_t_10 = NULL;
+      }
+      PyTuple_SET_ITEM(__pyx_t_13, 0+__pyx_t_9, __pyx_t_8);
+      __Pyx_GIVEREF(__pyx_t_8);
+      __Pyx_INCREF(__pyx_v_eval_metric);
+      PyTuple_SET_ITEM(__pyx_t_13, 1+__pyx_t_9, __pyx_v_eval_metric);
+      __Pyx_GIVEREF(__pyx_v_eval_metric);
+      __pyx_t_8 = 0;
+      __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_13, NULL); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_12);
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_eval_score, __pyx_t_12);
+      __pyx_t_12 = 0;
+
+      /* "kaggler\online_model\ftrl_fm.pyx":346
+ *             if validationFile!=None and eval_metric!=None:
+ *                 eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
+ *                 print("Epoch %d\finished: %d\tEvaludation score: %f" % (e, t, eval_score))             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+      __pyx_t_12 = __Pyx_PyInt_From_int(__pyx_v_e); if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_12);
+      __pyx_t_2 = __Pyx_PyInt_From_unsigned_int(__pyx_v_t); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_13 = PyTuple_New(3); if (unlikely(!__pyx_t_13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_13);
+      PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_12);
+      __Pyx_GIVEREF(__pyx_t_12);
+      PyTuple_SET_ITEM(__pyx_t_13, 1, __pyx_t_2);
+      __Pyx_GIVEREF(__pyx_t_2);
+      __Pyx_INCREF(__pyx_v_eval_score);
+      PyTuple_SET_ITEM(__pyx_t_13, 2, __pyx_v_eval_score);
+      __Pyx_GIVEREF(__pyx_v_eval_score);
+      __pyx_t_12 = 0;
+      __pyx_t_2 = 0;
+      __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Epoch_d_inished_d_Evaludation_sc, __pyx_t_13); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      if (__Pyx_PrintOne(0, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      goto __pyx_L14;
+    }
+    __pyx_L14:;
   }
 
-  /* "kaggler\online_model\ftrl_fm.pyx":280
+  /* "kaggler\online_model\ftrl_fm.pyx":305
  * 
  * 
- *     def fit(self,trainingFile,hashSalt='salt',n_epochs=5,reportFrequency=10000):             # <<<<<<<<<<<<<<
+ *     def fit(self,trainingFile,hashSalt='salt',n_epochs=5,reportFrequency=10000,validationFile=None,eval_metric=None):             # <<<<<<<<<<<<<<
  *         start = datetime.now()
  *         # initialize a FM learner
  */
@@ -6984,12 +7770,13 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_22fit(struct
   __Pyx_XDECREF((PyObject *)__pyx_v_learner);
   __Pyx_XDECREF(__pyx_v_x);
   __Pyx_XDECREF(__pyx_v_ID);
+  __Pyx_XDECREF(__pyx_v_eval_score);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "kaggler\online_model\ftrl_fm.pyx":318
+/* "kaggler\online_model\ftrl_fm.pyx":349
  * 
  * 
  * def logLoss(double p, double y):             # <<<<<<<<<<<<<<
@@ -7030,11 +7817,11 @@ static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_1logLoss(PyObject *__
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("logLoss", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("logLoss", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "logLoss") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "logLoss") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -7042,12 +7829,12 @@ static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_1logLoss(PyObject *__
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_p = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_p == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_p = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_p == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_y = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_y == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("logLoss", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("logLoss", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("kaggler.online_model.ftrl_fm.logLoss", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7074,7 +7861,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_logLoss(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("logLoss", 0);
 
-  /* "kaggler\online_model\ftrl_fm.pyx":324
+  /* "kaggler\online_model\ftrl_fm.pyx":355
  *     y: actual value {0, 1}
  *     '''
  *     p = max(min(p, 1. - 1e-15), 1e-15)             # <<<<<<<<<<<<<<
@@ -7097,7 +7884,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_logLoss(CYTHON_UNUSED
   }
   __pyx_v_p = __pyx_t_4;
 
-  /* "kaggler\online_model\ftrl_fm.pyx":325
+  /* "kaggler\online_model\ftrl_fm.pyx":356
  *     '''
  *     p = max(min(p, 1. - 1e-15), 1e-15)
  *     return - log(p) if y == 1. else -log(1. - p)             # <<<<<<<<<<<<<<
@@ -7106,12 +7893,12 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_logLoss(CYTHON_UNUSED
  */
   __Pyx_XDECREF(__pyx_r);
   if (((__pyx_v_y == 1.) != 0)) {
-    __pyx_t_6 = PyFloat_FromDouble((-log(__pyx_v_p))); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyFloat_FromDouble((-log(__pyx_v_p))); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_5 = __pyx_t_6;
     __pyx_t_6 = 0;
   } else {
-    __pyx_t_6 = PyFloat_FromDouble((-log((1. - __pyx_v_p)))); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyFloat_FromDouble((-log((1. - __pyx_v_p)))); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_5 = __pyx_t_6;
     __pyx_t_6 = 0;
@@ -7120,7 +7907,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_logLoss(CYTHON_UNUSED
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "kaggler\online_model\ftrl_fm.pyx":318
+  /* "kaggler\online_model\ftrl_fm.pyx":349
  * 
  * 
  * def logLoss(double p, double y):             # <<<<<<<<<<<<<<
@@ -7141,7 +7928,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_logLoss(CYTHON_UNUSED
 }
 static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_GeneratorObject *__pyx_generator, PyObject *__pyx_sent_value); /* proto */
 
-/* "kaggler\online_model\ftrl_fm.pyx":327
+/* "kaggler\online_model\ftrl_fm.pyx":358
  *     return - log(p) if y == 1. else -log(1. - p)
  * 
  * def data(filePath, hashSize, hashSalt):             # <<<<<<<<<<<<<<
@@ -7184,16 +7971,16 @@ static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_3data(PyObject *__pyx
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_hashSize)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("data", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("data", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_hashSalt)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("data", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("data", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "data") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "data") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -7208,7 +7995,7 @@ static PyObject *__pyx_pw_7kaggler_12online_model_7ftrl_fm_3data(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("data", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("data", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("kaggler.online_model.ftrl_fm.data", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7245,7 +8032,7 @@ static PyObject *__pyx_pf_7kaggler_12online_model_7ftrl_fm_2data(CYTHON_UNUSED P
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_hashSalt);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_hashSalt);
   {
-    __pyx_GeneratorObject *gen = __Pyx_Generator_New((__pyx_generator_body_t) __pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator, (PyObject *) __pyx_cur_scope, __pyx_n_s_data, __pyx_n_s_data); if (unlikely(!gen)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_GeneratorObject *gen = __Pyx_Generator_New((__pyx_generator_body_t) __pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator, (PyObject *) __pyx_cur_scope, __pyx_n_s_data, __pyx_n_s_data); if (unlikely(!gen)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -7294,22 +8081,22 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_sent_value)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "kaggler\online_model\ftrl_fm.pyx":341
+  /* "kaggler\online_model\ftrl_fm.pyx":372
  *     cdef unsigned int index
  *     cdef dict row
  *     import os             # <<<<<<<<<<<<<<
  *     for t, row in enumerate(DictReader(filePath)):
  *         ID = row['activity_id']
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_os, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 341; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_os, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 372; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_os = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "kaggler\online_model\ftrl_fm.pyx":342
+  /* "kaggler\online_model\ftrl_fm.pyx":373
  *     cdef dict row
  *     import os
  *     for t, row in enumerate(DictReader(filePath)):             # <<<<<<<<<<<<<<
@@ -7317,7 +8104,7 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
  *         del row['activity_id']
  */
   __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DictReader); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_DictReader); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -7330,16 +8117,16 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_cur_scope->__pyx_v_filePath); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_cur_scope->__pyx_v_filePath); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_filePath);
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_cur_scope->__pyx_v_filePath);
     __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_filePath);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -7348,9 +8135,9 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
     __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -7358,16 +8145,16 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #endif
       } else {
         if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_1); __pyx_t_6++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #endif
       }
     } else {
@@ -7376,13 +8163,13 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         break;
       }
       __Pyx_GOTREF(__pyx_t_1);
     }
-    if (!(likely(PyDict_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_t_1)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 342; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!(likely(PyDict_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_t_1)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_row);
     __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_row, ((PyObject*)__pyx_t_1));
     __Pyx_GIVEREF(__pyx_t_1);
@@ -7390,7 +8177,7 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
     __pyx_cur_scope->__pyx_v_t = __pyx_t_2;
     __pyx_t_2 = (__pyx_t_2 + 1);
 
-    /* "kaggler\online_model\ftrl_fm.pyx":343
+    /* "kaggler\online_model\ftrl_fm.pyx":374
  *     import os
  *     for t, row in enumerate(DictReader(filePath)):
  *         ID = row['activity_id']             # <<<<<<<<<<<<<<
@@ -7399,16 +8186,16 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
  */
     if (unlikely(__pyx_cur_scope->__pyx_v_row == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_activity_id); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 343; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_activity_id); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 374; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_ID);
     __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_ID, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "kaggler\online_model\ftrl_fm.pyx":344
+    /* "kaggler\online_model\ftrl_fm.pyx":375
  *     for t, row in enumerate(DictReader(filePath)):
  *         ID = row['activity_id']
  *         del row['activity_id']             # <<<<<<<<<<<<<<
@@ -7417,11 +8204,11 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
  */
     if (unlikely(__pyx_cur_scope->__pyx_v_row == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    if (PyDict_DelItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_activity_id) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 344; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_DelItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_activity_id) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 375; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "kaggler\online_model\ftrl_fm.pyx":346
+    /* "kaggler\online_model\ftrl_fm.pyx":377
  *         del row['activity_id']
  * 
  *         del row['outcome_isnull']             # <<<<<<<<<<<<<<
@@ -7430,11 +8217,11 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
  */
     if (unlikely(__pyx_cur_scope->__pyx_v_row == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    if (PyDict_DelItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_outcome_isnull) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_DelItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_outcome_isnull) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "kaggler\online_model\ftrl_fm.pyx":348
+    /* "kaggler\online_model\ftrl_fm.pyx":379
  *         del row['outcome_isnull']
  * 
  *         y = 0.             # <<<<<<<<<<<<<<
@@ -7443,7 +8230,7 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
  */
     __pyx_cur_scope->__pyx_v_y = 0.;
 
-    /* "kaggler\online_model\ftrl_fm.pyx":349
+    /* "kaggler\online_model\ftrl_fm.pyx":380
  * 
  *         y = 0.
  *         if 'outcome' in row:             # <<<<<<<<<<<<<<
@@ -7452,13 +8239,13 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
  */
     if (unlikely(__pyx_cur_scope->__pyx_v_row == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_8 = (__Pyx_PyDict_Contains(__pyx_n_s_outcome, __pyx_cur_scope->__pyx_v_row, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = (__Pyx_PyDict_Contains(__pyx_n_s_outcome, __pyx_cur_scope->__pyx_v_row, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 380; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_9 = (__pyx_t_8 != 0);
     if (__pyx_t_9) {
 
-      /* "kaggler\online_model\ftrl_fm.pyx":350
+      /* "kaggler\online_model\ftrl_fm.pyx":381
  *         y = 0.
  *         if 'outcome' in row:
  *             if row['outcome'] == '1':             # <<<<<<<<<<<<<<
@@ -7467,15 +8254,15 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
  */
       if (unlikely(__pyx_cur_scope->__pyx_v_row == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
-      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_outcome); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 350; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_outcome); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_t_1, __pyx_kp_s_1, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_t_1, __pyx_kp_s_1, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 381; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_9) {
 
-        /* "kaggler\online_model\ftrl_fm.pyx":351
+        /* "kaggler\online_model\ftrl_fm.pyx":382
  *         if 'outcome' in row:
  *             if row['outcome'] == '1':
  *                 y = 1.             # <<<<<<<<<<<<<<
@@ -7487,7 +8274,7 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
       }
       __pyx_L7:;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":352
+      /* "kaggler\online_model\ftrl_fm.pyx":383
  *             if row['outcome'] == '1':
  *                 y = 1.
  *             del row['outcome']             # <<<<<<<<<<<<<<
@@ -7496,28 +8283,28 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
  */
       if (unlikely(__pyx_cur_scope->__pyx_v_row == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 352; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
-      if (PyDict_DelItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_outcome) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 352; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_DelItem(__pyx_cur_scope->__pyx_v_row, __pyx_n_s_outcome) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       goto __pyx_L6;
     }
     __pyx_L6:;
 
-    /* "kaggler\online_model\ftrl_fm.pyx":358
+    /* "kaggler\online_model\ftrl_fm.pyx":389
  *         # row['hour'] = row['hour'][6:]
  * 
  *         x = []             # <<<<<<<<<<<<<<
  * 
  *         for key in row:
  */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 389; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_x);
     __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_x, ((PyObject*)__pyx_t_1));
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "kaggler\online_model\ftrl_fm.pyx":360
+    /* "kaggler\online_model\ftrl_fm.pyx":391
  *         x = []
  * 
  *         for key in row:             # <<<<<<<<<<<<<<
@@ -7527,9 +8314,9 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
     __pyx_t_10 = 0;
     if (unlikely(__pyx_cur_scope->__pyx_v_row == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_5 = __Pyx_dict_iterator(__pyx_cur_scope->__pyx_v_row, 1, ((PyObject *)NULL), (&__pyx_t_11), (&__pyx_t_12)); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_dict_iterator(__pyx_cur_scope->__pyx_v_row, 1, ((PyObject *)NULL), (&__pyx_t_11), (&__pyx_t_12)); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_1);
     __pyx_t_1 = __pyx_t_5;
@@ -7537,14 +8324,14 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
     while (1) {
       __pyx_t_13 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_11, &__pyx_t_10, &__pyx_t_5, NULL, NULL, __pyx_t_12);
       if (unlikely(__pyx_t_13 == 0)) break;
-      if (unlikely(__pyx_t_13 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__pyx_t_13 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 391; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_key);
       __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_key, __pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":361
+      /* "kaggler\online_model\ftrl_fm.pyx":392
  * 
  *         for key in row:
  *             value = row[key]             # <<<<<<<<<<<<<<
@@ -7553,72 +8340,72 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
  */
       if (unlikely(__pyx_cur_scope->__pyx_v_row == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 361; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 392; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
-      __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_row, __pyx_cur_scope->__pyx_v_key); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 361; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+      __pyx_t_5 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_row, __pyx_cur_scope->__pyx_v_key); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 392; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
       __Pyx_GOTREF(__pyx_t_5);
-      if (!(likely(PyString_CheckExact(__pyx_t_5))||((__pyx_t_5) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_5)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 361; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (!(likely(PyString_CheckExact(__pyx_t_5))||((__pyx_t_5) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "str", Py_TYPE(__pyx_t_5)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 392; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_value);
       __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_value, ((PyObject*)__pyx_t_5));
       __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":363
+      /* "kaggler\online_model\ftrl_fm.pyx":394
  *             value = row[key]
  * 
  *             index = abs(hash(hashSalt + key + '_' + value)) % hashSize + 1      # 1 is added to hash index because I want 0 to indicate the bias term.             # <<<<<<<<<<<<<<
  *             x.append(index)
  * 
  */
-      __pyx_t_5 = PyNumber_Add(__pyx_cur_scope->__pyx_v_hashSalt, __pyx_cur_scope->__pyx_v_key); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyNumber_Add(__pyx_cur_scope->__pyx_v_hashSalt, __pyx_cur_scope->__pyx_v_key); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_4 = PyNumber_Add(__pyx_t_5, __pyx_n_s__5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyNumber_Add(__pyx_t_5, __pyx_n_s__5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = PyNumber_Add(__pyx_t_4, __pyx_cur_scope->__pyx_v_value); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyNumber_Add(__pyx_t_4, __pyx_cur_scope->__pyx_v_value); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_14 = PyObject_Hash(__pyx_t_5); if (unlikely(__pyx_t_14 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_14 = PyObject_Hash(__pyx_t_5); if (unlikely(__pyx_t_14 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyInt_FromHash_t(__pyx_t_14); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyInt_FromHash_t(__pyx_t_14); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_4 = PyNumber_Absolute(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyNumber_Absolute(__pyx_t_5); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = PyNumber_Remainder(__pyx_t_4, __pyx_cur_scope->__pyx_v_hashSize); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyNumber_Remainder(__pyx_t_4, __pyx_cur_scope->__pyx_v_hashSize); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyNumber_Add(__pyx_t_5, __pyx_int_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyNumber_Add(__pyx_t_5, __pyx_int_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_15 = __Pyx_PyInt_As_unsigned_int(__pyx_t_4); if (unlikely((__pyx_t_15 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_15 = __Pyx_PyInt_As_unsigned_int(__pyx_t_4); if (unlikely((__pyx_t_15 == (unsigned int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_cur_scope->__pyx_v_index = __pyx_t_15;
 
-      /* "kaggler\online_model\ftrl_fm.pyx":364
+      /* "kaggler\online_model\ftrl_fm.pyx":395
  * 
  *             index = abs(hash(hashSalt + key + '_' + value)) % hashSize + 1      # 1 is added to hash index because I want 0 to indicate the bias term.
  *             x.append(index)             # <<<<<<<<<<<<<<
  * 
  *         yield t, ID, x, y
  */
-      __pyx_t_4 = __Pyx_PyInt_From_unsigned_int(__pyx_cur_scope->__pyx_v_index); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyInt_From_unsigned_int(__pyx_cur_scope->__pyx_v_index); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_16 = __Pyx_PyList_Append(__pyx_cur_scope->__pyx_v_x, __pyx_t_4); if (unlikely(__pyx_t_16 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_16 = __Pyx_PyList_Append(__pyx_cur_scope->__pyx_v_x, __pyx_t_4); if (unlikely(__pyx_t_16 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "kaggler\online_model\ftrl_fm.pyx":366
+    /* "kaggler\online_model\ftrl_fm.pyx":397
  *             x.append(index)
  * 
  *         yield t, ID, x, y             # <<<<<<<<<<<<<<
  */
-    __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_cur_scope->__pyx_v_t); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_cur_scope->__pyx_v_t); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_cur_scope->__pyx_v_y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_cur_scope->__pyx_v_y); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
@@ -7651,9 +8438,9 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
     __Pyx_XGOTREF(__pyx_t_3);
     __pyx_t_6 = __pyx_cur_scope->__pyx_t_2;
     __pyx_t_7 = __pyx_cur_scope->__pyx_t_3;
-    if (unlikely(!__pyx_sent_value)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_sent_value)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "kaggler\online_model\ftrl_fm.pyx":342
+    /* "kaggler\online_model\ftrl_fm.pyx":373
  *     cdef dict row
  *     import os
  *     for t, row in enumerate(DictReader(filePath)):             # <<<<<<<<<<<<<<
@@ -7663,7 +8450,7 @@ static PyObject *__pyx_gb_7kaggler_12online_model_7ftrl_fm_4generator(__pyx_Gene
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "kaggler\online_model\ftrl_fm.pyx":327
+  /* "kaggler\online_model\ftrl_fm.pyx":358
  *     return - log(p) if y == 1. else -log(1. - p)
  * 
  * def data(filePath, hashSize, hashSalt):             # <<<<<<<<<<<<<<
@@ -20401,7 +21188,8 @@ static PyMethodDef __pyx_methods_7kaggler_12online_model_7ftrl_fm_FTRL_FM[] = {
   {"write_w", (PyCFunction)__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_17write_w, METH_O, __pyx_doc_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_16write_w},
   {"write_w_fm", (PyCFunction)__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_19write_w_fm, METH_O, __pyx_doc_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_18write_w_fm},
   {"predict", (PyCFunction)__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_21predict, METH_VARARGS|METH_KEYWORDS, 0},
-  {"fit", (PyCFunction)__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_23fit, METH_VARARGS|METH_KEYWORDS, 0},
+  {"evaluate", (PyCFunction)__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_23evaluate, METH_VARARGS|METH_KEYWORDS, 0},
+  {"fit", (PyCFunction)__pyx_pw_7kaggler_12online_model_7ftrl_fm_7FTRL_FM_25fit, METH_VARARGS|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
@@ -21309,8 +22097,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_E_repo_Kaggler_kaggler_online_mo, __pyx_k_E_repo_Kaggler_kaggler_online_mo, sizeof(__pyx_k_E_repo_Kaggler_kaggler_online_mo), 0, 0, 1, 0},
   {&__pyx_n_s_Ellipsis, __pyx_k_Ellipsis, sizeof(__pyx_k_Ellipsis), 0, 0, 1, 1},
   {&__pyx_kp_s_Empty_shape_tuple_for_cython_arr, __pyx_k_Empty_shape_tuple_for_cython_arr, sizeof(__pyx_k_Empty_shape_tuple_for_cython_arr), 0, 0, 1, 0},
+  {&__pyx_kp_s_Epoch_d_count_d_Evaludation_scor, __pyx_k_Epoch_d_count_d_Evaludation_scor, sizeof(__pyx_k_Epoch_d_count_d_Evaludation_scor), 0, 0, 1, 0},
   {&__pyx_kp_s_Epoch_d_count_d_Progressive_Loss, __pyx_k_Epoch_d_count_d_Progressive_Loss, sizeof(__pyx_k_Epoch_d_count_d_Progressive_Loss), 0, 0, 1, 0},
   {&__pyx_kp_s_Epoch_d_finished_validation_loss, __pyx_k_Epoch_d_finished_validation_loss, sizeof(__pyx_k_Epoch_d_finished_validation_loss), 0, 0, 1, 0},
+  {&__pyx_kp_s_Epoch_d_inished_d_Evaludation_sc, __pyx_k_Epoch_d_inished_d_Evaludation_sc, sizeof(__pyx_k_Epoch_d_inished_d_Evaludation_sc), 0, 0, 1, 0},
   {&__pyx_kp_u_Format_string_allocated_too_shor, __pyx_k_Format_string_allocated_too_shor, sizeof(__pyx_k_Format_string_allocated_too_shor), 0, 1, 0, 0},
   {&__pyx_kp_u_Format_string_allocated_too_shor_2, __pyx_k_Format_string_allocated_too_shor_2, sizeof(__pyx_k_Format_string_allocated_too_shor_2), 0, 1, 0, 0},
   {&__pyx_n_s_ID, __pyx_k_ID, sizeof(__pyx_k_ID), 0, 0, 1, 1},
@@ -21349,6 +22139,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_close, __pyx_k_close, sizeof(__pyx_k_close), 0, 0, 1, 1},
   {&__pyx_kp_s_contiguous_and_direct, __pyx_k_contiguous_and_direct, sizeof(__pyx_k_contiguous_and_direct), 0, 0, 1, 0},
   {&__pyx_kp_s_contiguous_and_indirect, __pyx_k_contiguous_and_indirect, sizeof(__pyx_k_contiguous_and_indirect), 0, 0, 1, 0},
+  {&__pyx_n_s_copy, __pyx_k_copy, sizeof(__pyx_k_copy), 0, 0, 1, 1},
   {&__pyx_n_s_csv, __pyx_k_csv, sizeof(__pyx_k_csv), 0, 0, 1, 1},
   {&__pyx_n_s_data, __pyx_k_data, sizeof(__pyx_k_data), 0, 0, 1, 1},
   {&__pyx_n_s_datetime, __pyx_k_datetime, sizeof(__pyx_k_datetime), 0, 0, 1, 1},
@@ -21360,6 +22151,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_enter, __pyx_k_enter, sizeof(__pyx_k_enter), 0, 0, 1, 1},
   {&__pyx_n_s_enumerate, __pyx_k_enumerate, sizeof(__pyx_k_enumerate), 0, 0, 1, 1},
   {&__pyx_n_s_error, __pyx_k_error, sizeof(__pyx_k_error), 0, 0, 1, 1},
+  {&__pyx_n_s_eval_metric, __pyx_k_eval_metric, sizeof(__pyx_k_eval_metric), 0, 0, 1, 1},
+  {&__pyx_n_s_evaluate, __pyx_k_evaluate, sizeof(__pyx_k_evaluate), 0, 0, 1, 1},
   {&__pyx_n_s_exit, __pyx_k_exit, sizeof(__pyx_k_exit), 0, 0, 1, 1},
   {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
   {&__pyx_n_s_filePath, __pyx_k_filePath, sizeof(__pyx_k_filePath), 0, 0, 1, 1},
@@ -21436,6 +22229,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_u_unknown_dtype_code_in_numpy_pxd, __pyx_k_unknown_dtype_code_in_numpy_pxd, sizeof(__pyx_k_unknown_dtype_code_in_numpy_pxd), 0, 1, 0, 0},
   {&__pyx_n_s_unpack, __pyx_k_unpack, sizeof(__pyx_k_unpack), 0, 0, 1, 1},
   {&__pyx_n_s_update, __pyx_k_update, sizeof(__pyx_k_update), 0, 0, 1, 1},
+  {&__pyx_n_s_validationFile, __pyx_k_validationFile, sizeof(__pyx_k_validationFile), 0, 0, 1, 1},
   {&__pyx_n_s_value, __pyx_k_value, sizeof(__pyx_k_value), 0, 0, 1, 1},
   {&__pyx_n_s_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 0, 1, 1},
   {&__pyx_n_s_write, __pyx_k_write, sizeof(__pyx_k_write), 0, 0, 1, 1},
@@ -21698,29 +22492,29 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "kaggler\online_model\ftrl_fm.pyx":318
+  /* "kaggler\online_model\ftrl_fm.pyx":349
  * 
  * 
  * def logLoss(double p, double y):             # <<<<<<<<<<<<<<
  *     '''
  *     calculate the log loss cost
  */
-  __pyx_tuple__24 = PyTuple_Pack(2, __pyx_n_s_p, __pyx_n_s_y); if (unlikely(!__pyx_tuple__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__24 = PyTuple_Pack(2, __pyx_n_s_p, __pyx_n_s_y); if (unlikely(!__pyx_tuple__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_E_repo_Kaggler_kaggler_online_mo, __pyx_n_s_logLoss, 318, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_E_repo_Kaggler_kaggler_online_mo, __pyx_n_s_logLoss, 349, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "kaggler\online_model\ftrl_fm.pyx":327
+  /* "kaggler\online_model\ftrl_fm.pyx":358
  *     return - log(p) if y == 1. else -log(1. - p)
  * 
  * def data(filePath, hashSize, hashSalt):             # <<<<<<<<<<<<<<
  *     ''' generator for data using hash trick
  * 
  */
-  __pyx_tuple__26 = PyTuple_Pack(12, __pyx_n_s_filePath, __pyx_n_s_hashSize, __pyx_n_s_hashSalt, __pyx_n_s_t, __pyx_n_s_y, __pyx_n_s_x, __pyx_n_s_value, __pyx_n_s_index, __pyx_n_s_row, __pyx_n_s_os, __pyx_n_s_ID, __pyx_n_s_key); if (unlikely(!__pyx_tuple__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__26 = PyTuple_Pack(12, __pyx_n_s_filePath, __pyx_n_s_hashSize, __pyx_n_s_hashSalt, __pyx_n_s_t, __pyx_n_s_y, __pyx_n_s_x, __pyx_n_s_value, __pyx_n_s_index, __pyx_n_s_row, __pyx_n_s_os, __pyx_n_s_ID, __pyx_n_s_key); if (unlikely(!__pyx_tuple__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(3, 0, 12, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_E_repo_Kaggler_kaggler_online_mo, __pyx_n_s_data, 327, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(3, 0, 12, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_E_repo_Kaggler_kaggler_online_mo, __pyx_n_s_data, 358, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "View.MemoryView":276
  *         return self.name
@@ -21896,7 +22690,7 @@ PyMODINIT_FUNC PyInit_ftrl_fm(void)
   #endif
   if (PyObject_SetAttrString(__pyx_m, "FTRL_FM", (PyObject *)&__pyx_type_7kaggler_12online_model_7ftrl_fm_FTRL_FM) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7kaggler_12online_model_7ftrl_fm_FTRL_FM = &__pyx_type_7kaggler_12online_model_7ftrl_fm_FTRL_FM;
-  if (PyType_Ready(&__pyx_type_7kaggler_12online_model_7ftrl_fm___pyx_scope_struct__data) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7kaggler_12online_model_7ftrl_fm___pyx_scope_struct__data) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7kaggler_12online_model_7ftrl_fm___pyx_scope_struct__data.tp_print = 0;
   __pyx_ptype_7kaggler_12online_model_7ftrl_fm___pyx_scope_struct__data = &__pyx_type_7kaggler_12online_model_7ftrl_fm___pyx_scope_struct__data;
   if (PyType_Ready(&__pyx_type___pyx_array) < 0) {__pyx_filename = __pyx_f[2]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -21968,7 +22762,7 @@ PyMODINIT_FUNC PyInit_ftrl_fm(void)
  * cimport cython
  * from libc.math cimport exp, copysign, log, sqrt
  * import numpy as np             # <<<<<<<<<<<<<<
- * 
+ * import copy
  * cimport numpy as np
  */
   __pyx_t_2 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 7; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -21976,8 +22770,20 @@ PyMODINIT_FUNC PyInit_ftrl_fm(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 7; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
+  /* "kaggler\online_model\ftrl_fm.pyx":8
+ * from libc.math cimport exp, copysign, log, sqrt
+ * import numpy as np
+ * import copy             # <<<<<<<<<<<<<<
+ * cimport numpy as np
+ * np.import_array()
+ */
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_copy, 0, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_copy, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
   /* "kaggler\online_model\ftrl_fm.pyx":10
- * 
+ * import copy
  * cimport numpy as np
  * np.import_array()             # <<<<<<<<<<<<<<
  * 
@@ -22018,28 +22824,28 @@ PyMODINIT_FUNC PyInit_ftrl_fm(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_random, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "kaggler\online_model\ftrl_fm.pyx":318
+  /* "kaggler\online_model\ftrl_fm.pyx":349
  * 
  * 
  * def logLoss(double p, double y):             # <<<<<<<<<<<<<<
  *     '''
  *     calculate the log loss cost
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7kaggler_12online_model_7ftrl_fm_1logLoss, NULL, __pyx_n_s_kaggler_online_model_ftrl_fm); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7kaggler_12online_model_7ftrl_fm_1logLoss, NULL, __pyx_n_s_kaggler_online_model_ftrl_fm); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_logLoss, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_logLoss, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "kaggler\online_model\ftrl_fm.pyx":327
+  /* "kaggler\online_model\ftrl_fm.pyx":358
  *     return - log(p) if y == 1. else -log(1. - p)
  * 
  * def data(filePath, hashSize, hashSalt):             # <<<<<<<<<<<<<<
  *     ''' generator for data using hash trick
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7kaggler_12online_model_7ftrl_fm_3data, NULL, __pyx_n_s_kaggler_online_model_ftrl_fm); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_7kaggler_12online_model_7ftrl_fm_3data, NULL, __pyx_n_s_kaggler_online_model_ftrl_fm); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_data, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 327; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_data, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "kaggler\online_model\ftrl_fm.pyx":1
