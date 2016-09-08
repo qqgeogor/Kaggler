@@ -337,12 +337,12 @@ cdef class FTRL_FM:
                 if t % reportFrequency == 0:                
                     print("Epoch %d\tcount: %d\tProgressive Loss: %f" % (e, t, progressiveLoss / progressiveCount))
                     if validationFile!=None and eval_metric!=None:
-                        eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
+                        eval_score = self.evaluate(validationFile,eval_metric)
                         print("Epoch %d\tcount: %d\tEvaludation score: %f" % (e, t, eval_score))
 
             print("Epoch %d finished.\tvalidation loss: %f\telapsed time: %s" % (e, cvLoss / cvCount, str(datetime.now() - start)))
             if validationFile!=None and eval_metric!=None:
-                eval_score = self.evaluate(copy.copy(validationFile),eval_metric)
+                eval_score = self.evaluate(validationFile,eval_metric)
                 print("Epoch %d\finished: %d\tEvaludation score: %f" % (e, t, eval_score))
 
 
